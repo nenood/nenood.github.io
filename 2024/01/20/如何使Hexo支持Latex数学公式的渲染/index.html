@@ -18,15 +18,25 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客  后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错 因此决定写一些侧重于解决问题的博客，希望或多或少能帮到一些人">
+  <meta name="description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
+ 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客
+ 
+ 后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此
+ 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错
+ 因此决定写一些侧重于解决问题的博客，希望或多或少能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使Hexo支持Latex数学公式的渲染">
 <meta property="og:url" content="http://example.com/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
 <meta property="og:site_name" content="N.E.O.D">
-<meta property="og:description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客  后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错 因此决定写一些侧重于解决问题的博客，希望或多或少能帮到一些人">
+<meta property="og:description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
+ 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客
+ 
+ 后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此
+ 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错
+ 因此决定写一些侧重于解决问题的博客，希望或多或少能">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-20T13:18:30.000Z">
 <meta property="article:modified_time" content="2024-01-20T14:16:14.000Z">
@@ -225,30 +235,37 @@
 <p>因此决定写一些侧重于解决问题的博客，希望或多或少能帮到一些人。（因为我遇到的问题比较多，应该算是”经验满满“了）以下是正文</p>
 <hr>
 <span id="more"></span>
-<h4 id="步骤一：卸载与hexo-math有关的npm包"><a href="#步骤一：卸载与hexo-math有关的npm包" class="headerlink" title="步骤一：卸载与hexo math有关的npm包"></a>步骤一：卸载与hexo math有关的npm包</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-math --save</span><br><span class="line">npm un hexo-renderer-markdown --save</span><br></pre></td></tr></tbody></table></figure>
-<h4 id="步骤二：安装Pandoc、过滤插件和渲染插件"><a href="#步骤二：安装Pandoc、过滤插件和渲染插件" class="headerlink" title="步骤二：安装Pandoc、过滤插件和渲染插件"></a>步骤二：安装Pandoc、过滤插件和渲染插件</h4><ol>
-<li><p>安装Pandoc<br><a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">How to install Pandoc</a><br>点击上方链接进入后根据引导文档安装即可<br><strong>注</strong>：根据安装程序所说，安装完成后需要重启电脑（似乎是重启电脑），笔者当时并未尝试不重启电脑的情况</p>
-</li>
+<h4 id="步骤一卸载与hexo-math有关的npm包">步骤一：卸载与hexo
+math有关的npm包</h4>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-math --save</span><br><span class="line">npm un hexo-renderer-markdown --save</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="步骤二安装pandoc过滤插件和渲染插件">步骤二：安装Pandoc、过滤插件和渲染插件</h4>
+<ol type="1">
+<li><p>安装Pandoc<br>
+<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">How to
+install Pandoc</a><br>
+点击上方链接进入后根据引导文档安装即可<br>
+<strong>注</strong>：根据安装程序所说，安装完成后需要重启电脑（似乎是重启电脑），笔者当时并未尝试不重启电脑的情况</p></li>
 <li><p>安装过滤插件</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-filter-mathjax --save</span><br></pre></td></tr></tbody></table></figure>
-</li>
-</ol>
-<ol>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-filter-mathjax --save</span><br></pre></td></tr></tbody></table></figure></li>
 <li><p>安装渲染插件</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-pandoc --save</span><br></pre></td></tr></tbody></table></figure>
-</li>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-pandoc --save</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
-<h4 id="步骤三：配置mathjax"><a href="#步骤三：配置mathjax" class="headerlink" title="步骤三：配置mathjax"></a>步骤三：配置mathjax</h4><ul>
-<li><p><strong>主题</strong>配置文件（_config.yml）中：<br><code>Ctrl f</code>搜索”math“<br><code>per_page:</code>一项修改为<code>true</code><br><code>mathjax</code>中的<code>enable</code>设置为<code>true</code><br>若<code>per_page</code>设置为<code>false</code>则每次生成新的.md文件后需要在开头的配置内容中添加<code>mathjax: true</code></p>
-<p><strong>注：</strong><code>mathjax</code>与下方的<code>katex</code>只能有一个的<code>enable</code>为<code>true</code></p>
-</li>
-<li><p><strong>博客</strong>配置文件中：<br>加入以下代码</p>
+<h4 id="步骤三配置mathjax">步骤三：配置mathjax</h4>
+<ul>
+<li><p><strong>主题</strong>配置文件（_config.yml）中：<br>
+<code>Ctrl f</code>搜索”math“<br>
+<code>per_page:</code>一项修改为<code>true</code><br>
+<code>mathjax</code>中的<code>enable</code>设置为<code>true</code><br>
+若<code>per_page</code>设置为<code>false</code>则每次生成新的.md文件后需要在开头的配置内容中添加<code>mathjax: true</code></p>
+<p><strong>注：</strong><code>mathjax</code>与下方的<code>katex</code>只能有一个的<code>enable</code>为<code>true</code></p></li>
+<li><p><strong>博客</strong>配置文件中：<br>
+加入以下代码</p>
 <figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configure pandoc to use all github markdown format extensions</span></span><br><span class="line"><span class="comment"># extensions as of 2018 is an undocumented feature of hexo-renderer-pandoc</span></span><br><span class="line"><span class="comment"># Adding all extensions for github so we don't have to change index.js of</span></span><br><span class="line"><span class="comment"># hexo-renderer-pandoc.</span></span><br><span class="line"><span class="attr">pandoc:</span></span><br><span class="line">  <span class="attr">extensions:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-implicit_figures</span> <span class="comment"># 防止在图片后面将方括号里的东西作为caption。</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+gfm_auto_identifiers+angle_brackets_escapable</span> <span class="comment"># Not available in pandoc 1.16</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+pipe_tables+raw_html+fenced_code_blocks</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-ascii_identifiers+backtick_code_blocks+autolink_bare_uris</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+intraword_underscores+strikeout+hard_line_breaks+emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+shortcut_reference_links</span></span><br></pre></td></tr></tbody></table></figure>
-<p>（本操作是因为默认的markdown语法与GitHub的markdown语法不太一样）</p>
-</li>
+<p>（本操作是因为默认的markdown语法与GitHub的markdown语法不太一样）</p></li>
 </ul>
 <p>至此，在无任何异常的情况下，Hexo就可以支持Latex数学公式的渲染了</p>
-<h4 id="可能会有的问题"><a href="#可能会有的问题" class="headerlink" title="可能会有的问题"></a>可能会有的问题</h4><p>笔者在操作完上面所有的步骤后，运行<code>hexo g</code>会报错</p>
+<h4 id="可能会有的问题">可能会有的问题</h4>
+<p>笔者在操作完上面所有的步骤后，运行<code>hexo g</code>会报错</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandoc exited with code 23: The extension shortcut_reference_link is not supported <span class="keyword">for</span> markdown</span><br></pre></td></tr></tbody></table></figure>
 <p><strong>可能的解决方案</strong>：在上文步骤三中添加代码至<strong>博客</strong>配置文件中，将<code>- +shortcut_reference_links</code>一行注释掉，即：</p>
 <figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configure pandoc to use all github markdown format extensions</span></span><br><span class="line"><span class="comment"># extensions as of 2018 is an undocumented feature of hexo-renderer-pandoc</span></span><br><span class="line"><span class="comment"># Adding all extensions for github so we don't have to change index.js of</span></span><br><span class="line"><span class="comment"># hexo-renderer-pandoc.</span></span><br><span class="line"><span class="attr">pandoc:</span></span><br><span class="line">  <span class="attr">extensions:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-implicit_figures</span> <span class="comment"># 防止在图片后面将方括号里的东西作为caption。</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+gfm_auto_identifiers+angle_brackets_escapable</span> <span class="comment"># Not available in pandoc 1.16</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+pipe_tables+raw_html+fenced_code_blocks</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-ascii_identifiers+backtick_code_blocks+autolink_bare_uris</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+intraword_underscores+strikeout+hard_line_breaks+emoji</span></span><br><span class="line">    <span class="comment"># - +shortcut_reference_link</span></span><br></pre></td></tr></tbody></table></figure>
@@ -312,7 +329,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E5%8D%B8%E8%BD%BD%E4%B8%8Ehexo-math%E6%9C%89%E5%85%B3%E7%9A%84npm%E5%8C%85"><span class="nav-text">步骤一：卸载与hexo math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E5%AE%89%E8%A3%85Pandoc%E3%80%81%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6%E5%92%8C%E6%B8%B2%E6%9F%93%E6%8F%92%E4%BB%B6"><span class="nav-text">步骤二：安装Pandoc、过滤插件和渲染插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%EF%BC%9A%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">步骤三：配置mathjax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能会有的问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%8D%B8%E8%BD%BD%E4%B8%8Ehexo-math%E6%9C%89%E5%85%B3%E7%9A%84npm%E5%8C%85"><span class="nav-text">步骤一：卸载与hexo
+math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%AE%89%E8%A3%85pandoc%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6%E5%92%8C%E6%B8%B2%E6%9F%93%E6%8F%92%E4%BB%B6"><span class="nav-text">步骤二：安装Pandoc、过滤插件和渲染插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">步骤三：配置mathjax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能会有的问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
