@@ -18,14 +18,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"nenood.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="为什么需要梯度下降？
  梯度下降是一种基于迭代的优化算法，用于最小化函数的值。它是一种常用的机器学习算法，经常用于训练模型以最小化损失函数。其基本思想是沿着函数的梯度方向（即函数变化最快的方向）进行迭代，以找到函数的局部最小值。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈·梯度下降">
-<meta property="og:url" content="http://example.com/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/index.html">
+<meta property="og:url" content="http://nenood.xyz/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/index.html">
 <meta property="og:site_name" content="N.E.O.D">
 <meta property="og:description" content="为什么需要梯度下降？
  梯度下降是一种基于迭代的优化算法，用于最小化函数的值。它是一种常用的机器学习算法，经常用于训练模型以最小化损失函数。其基本思想是沿着函数的梯度方向（即函数变化最快的方向）进行迭代，以找到函数的局部最小值。">
@@ -44,7 +44,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/%E9%BB%91%E6%9A%97%E4%B8%AD%E5%AF%BB%E8%B7%AF.png">
 
-<link rel="canonical" href="http://example.com/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+<link rel="canonical" href="http://nenood.xyz/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
 
 
 <script id="page-configurations">
@@ -285,7 +285,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+    <link itemprop="mainEntityOfPage" href="http://nenood.xyz/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
@@ -547,6 +547,11 @@ mjx-container[display="true"] + br {
       </div>
     </main>
 
+    
+    <div id="aplayer"></div>
+    
+    
+
     <footer class="footer">
       <div class="footer-inner">
         
@@ -565,7 +570,7 @@ mjx-container[display="true"] + br {
 
         
 <div class="busuanzi-count">
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax="" async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -599,6 +604,7 @@ mjx-container[display="true"] + br {
   
   
   
+  
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   
@@ -616,6 +622,8 @@ mjx-container[display="true"] + br {
 
 
 
+  
+
 
 
 
@@ -635,6 +643,7 @@ mjx-container[display="true"] + br {
 
 
 
+    <div id="pjax">
   
 
   
@@ -680,6 +689,7 @@ mjx-container[display="true"] + br {
   </div>
 </div>
 
+    </div>
 
 
 <script src="/bundle.js"></script><script>
@@ -702,6 +712,64 @@ mjx-container[display="true"] + br {
       localStorage.setItem('comments_active', commentClass);
     });
   }
+;
+
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 ;
 
   if (typeof MathJax === 'undefined') {
@@ -757,7 +825,7 @@ mjx-container[display="true"] + br {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://nenood.xyz/2023/11/06/%E6%B5%85%E8%B0%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/',]
       });
       });
   ;

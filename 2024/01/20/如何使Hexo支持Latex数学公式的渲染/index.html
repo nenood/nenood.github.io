@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"nenood.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
@@ -29,7 +29,7 @@
  因此决定写一些侧重于解决问题的博客，希望或多或少能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使Hexo支持Latex数学公式的渲染">
-<meta property="og:url" content="http://example.com/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:url" content="http://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
 <meta property="og:site_name" content="N.E.O.D">
 <meta property="og:description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
  网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客
@@ -44,7 +44,7 @@
 <meta property="article:tag" content="Hexo博客优化">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
+<link rel="canonical" href="http://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
 
 
 <script id="page-configurations">
@@ -173,7 +173,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
+    <link itemprop="mainEntityOfPage" href="http://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
@@ -393,6 +393,11 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
       </div>
     </main>
 
+    
+    <div id="aplayer"></div>
+    
+    
+
     <footer class="footer">
       <div class="footer-inner">
         
@@ -411,7 +416,7 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
 
         
 <div class="busuanzi-count">
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax="" async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -445,6 +450,7 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
   
   
   
+  
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   
@@ -462,6 +468,8 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
 
 
 
+  
+
 
 
 
@@ -481,6 +489,7 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
 
 
 
+    <div id="pjax">
   
 
   
@@ -521,6 +530,7 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
   </div>
 </div>
 
+    </div>
 
 
 <script src="/bundle.js"></script><script>
@@ -545,11 +555,69 @@ math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="na
   }
 ;
 
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+;
+
       window.addEventListener('load', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/',]
       });
       });
   ;
