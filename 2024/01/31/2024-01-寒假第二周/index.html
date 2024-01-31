@@ -1,0 +1,649 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+  
+  
+  
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nenood.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="意识到似乎部分简单题目写题解并没有多少实质性的作用
+ 于是只挑出自己在做的时候遇到一些问题的题目
+ 本周题目主要是前缀和与差分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-01-寒假第二周">
+<meta property="og:url" content="https://nenood.xyz/2024/01/31/2024-01-%E5%AF%92%E5%81%87%E7%AC%AC%E4%BA%8C%E5%91%A8/index.html">
+<meta property="og:site_name" content="N.E.O.D">
+<meta property="og:description" content="意识到似乎部分简单题目写题解并没有多少实质性的作用
+ 于是只挑出自己在做的时候遇到一些问题的题目
+ 本周题目主要是前缀和与差分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-31T10:08:01.000Z">
+<meta property="article:modified_time" content="2024-01-31T12:11:12.000Z">
+<meta property="article:author" content="NeNoOD">
+<meta property="article:tag" content="前缀和与差分">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nenood.xyz/2024/01/31/2024-01-%E5%AF%92%E5%81%87%E7%AC%AC%E4%BA%8C%E5%91%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2024-01-寒假第二周 | N.E.O.D</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');loadCss('//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css');loadCss('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css');</script><noscript><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"></noscript></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta custom-logo">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">N.E.O.D</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <a>
+        <img class="custom-logo-image" src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/logo_3.png" alt="N.E.O.D">
+      </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nenood.xyz/2024/01/31/2024-01-%E5%AF%92%E5%81%87%E7%AC%AC%E4%BA%8C%E5%91%A8/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
+      <meta itemprop="name" content="NeNoOD">
+      <meta itemprop="description" content="To chronicle certain moments.">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N.E.O.D">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-01-寒假第二周
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-31 18:08:01 / 修改时间：20:11:12" itemprop="dateCreated datePublished" datetime="2024-01-31T18:08:01+08:00">2024-01-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-ACM/" itemprop="url" rel="index"><span itemprop="name">程序设计/ACM</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>意识到似乎部分简单题目写题解并没有多少实质性的作用</p>
+<p>于是只挑出自己在做的时候遇到一些问题的题目</p>
+<p>本周题目主要是前缀和与差分</p>
+<span id="more"></span>
+<h2 id="q_01-also-try-minecraft">Q_01-Also Try Minecraft</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1709B">Also Try
+Minecraft</a></li>
+</ul>
+<p>可以使用<code>num[]</code> <code>asc[]</code> <code>dis[]</code>
+<code>ascsum[]</code> <code>dissum[]</code>分别记录</p>
+<ol type="1">
+<li>输入的每一个高度</li>
+<li>从左往右移动会受到的伤害</li>
+<li>从右往左移动会受到的伤害</li>
+<li>从左往右受到伤害的前缀和</li>
+<li>从右往左受到伤害的前缀和</li>
+</ol>
+<p>但是实际上最终答案只需要两个前缀和来计算伤害总和，于是前面三个变量均可不使用数组全部保存</p>
+<p>要计算移动一格受到的伤害只需要本次读入的高度和上一次读入的高度，<code>num[]</code>可只用两个变量代替</p>
+<p>对于前缀和只需要用前缀和数组代替记录移动一格的伤害即可，最终代码如下：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">ll n, m, asc[<span class="number">200005</span>], dis[<span class="number">200005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;n, &amp;m);</span><br><span class="line">    ll a = <span class="number">0</span>, b;</span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;b);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">2</span>) { <span class="comment">// 读入的同时计算前缀和</span></span><br><span class="line">            asc[i<span class="number">-1</span>] = b &lt; a ? a - b : <span class="number">0</span>; </span><br><span class="line">            dis[i<span class="number">-1</span>] = b &gt; a ? b - a : <span class="number">0</span>;</span><br><span class="line">            asc[i<span class="number">-1</span>] += asc[i<span class="number">-2</span>];</span><br><span class="line">            dis[i<span class="number">-1</span>] += dis[i<span class="number">-2</span>];</span><br><span class="line">            <span class="comment">// 因为i&gt;=2时才记录第一次伤害以及前缀和，所以要i-1</span></span><br><span class="line">        }</span><br><span class="line">        a = b;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">0</span>; i &lt; m; i++) {</span><br><span class="line">        ll a, b;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;a, &amp;b);</span><br><span class="line">        <span class="comment">// a和b各-1后恰好符合前缀和相减</span></span><br><span class="line">        ll ans = a &lt; b ? asc[b<span class="number">-1</span>] - asc[a<span class="number">-1</span>] : dis[a<span class="number">-1</span>] - dis[b<span class="number">-1</span>];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="q_02-fedya-and-array">Q_02-Fedya and Array</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1793B">Fedya and
+Array</a></li>
+</ul>
+<p>感觉和前缀和与差分没什么关系，就是构造数列</p>
+<p>可以假设局部最大值与局部最小值仅有一个，则可以设置数列为</p>
+<p>X → Y → X-1 数列长度则为 2*(X-Y)</p>
+<p>问题解决</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line">ll n;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        ll max, min;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;max, &amp;min);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, (max - min)*<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (ll j = max; j &gt;= min; j--)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld "</span>, j);</span><br><span class="line">        <span class="keyword">for</span> (ll j = min+<span class="number">1</span>; j &lt;= max<span class="number">-1</span>; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld "</span>, j);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="q_03-海底高铁">Q_03-海底高铁</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3406">P3406
+海底高铁</a></li>
+</ul>
+<p>要想花的钱最少，就要比较买卡和不买卡的总花费</p>
+<p>总花费 = 次数 × 单次花费 ( + 工本费 )</p>
+<p>因此关键在于统计结果某条道路的次数</p>
+<p>若前一次输入和本次输入分别为<code>a</code>
+<code>b</code>，则对于<code>a → b</code>内的所有路的次数均要+1</p>
+<p>此处就要使用差分来做到区间修改</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n, m, ans;</span><br><span class="line">ll a, b, cnt[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    ios_base::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;n, &amp;m);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a); <span class="comment">// 先读取一次</span></span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">2</span>; i &lt;= m; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;b);</span><br><span class="line">        <span class="comment">// 一开始cnt作为差分数组</span></span><br><span class="line">        <span class="keyword">if</span> (b &gt; a) {</span><br><span class="line">            cnt[a]++;</span><br><span class="line">            cnt[b]--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">else</span> {</span><br><span class="line">            cnt[b]++;</span><br><span class="line">            cnt[a]--;</span><br><span class="line">        }</span><br><span class="line">        a = b; <span class="comment">// 将本次读取的数作为上一次的数</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= n<span class="number">-1</span>; i++) {</span><br><span class="line">        <span class="comment">// 整合cnt，统计出经过每条路的次数</span></span><br><span class="line">        cnt[i] += cnt[i<span class="number">-1</span>];</span><br><span class="line">        ll x, y, z;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;x, &amp;y, &amp;z);</span><br><span class="line">        ans += <span class="built_in">min</span>(cnt[i]*x, cnt[i]*y+z); <span class="comment">// 选择最优解</span></span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="q_04-balanced-substring">Q_04-Balanced Substring</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/873/B">Balanced
+Substring (codeforces)</a></li>
+</ul>
+<p>遍历字符串<code>str</code>，若为<code>0</code>则<code>sum--</code>，反之<code>sum++</code></p>
+<p>每一次遍历都以<code>sum</code>为键，遍历次数为值，存入<code>map</code>，则有两种情况说明已经有平衡子字符串：</p>
+<ol type="1">
+<li>sum == 0</li>
+<li>map[sum] != 0</li>
+</ol>
+<p>第一种情况说明加的次数与减的次数相等</p>
+<p>第二种情况说明在前面某一次到现在这一次，加的次数与减的次数相等</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    string str;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cin &gt;&gt; str;</span><br><span class="line">    map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; book;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (str[i<span class="number">-1</span>] == <span class="string">'1'</span>)</span><br><span class="line">            sum++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            sum--;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">0</span>) <span class="comment">// 第一种情况，i就是字符串长度</span></span><br><span class="line">            ans = <span class="built_in">max</span>(ans, i);</span><br><span class="line">        <span class="keyword">if</span> (book[sum] == <span class="number">0</span>) <span class="comment">// 若没存过，则存入</span></span><br><span class="line">            book[sum] = i;</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">// 第二种情况，字符串长度为 i - book[sum]</span></span><br><span class="line">            ans = <span class="built_in">max</span>(ans, i - book[sum]);</span><br><span class="line">    }</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/" rel="tag"><i class="fa fa-tag"></i> 前缀和与差分</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/27/2024-1-%E5%AF%92%E5%81%87%E7%AC%AC%E4%B8%80%E5%91%A8-2/" rel="prev" title="2024-1-寒假第一周-2">
+      <i class="fa fa-chevron-left"></i> 2024-1-寒假第一周-2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#q_01-also-try-minecraft"><span class="nav-text">Q_01-Also Try Minecraft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q_02-fedya-and-array"><span class="nav-text">Q_02-Fedya and Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q_03-%E6%B5%B7%E5%BA%95%E9%AB%98%E9%93%81"><span class="nav-text">Q_03-海底高铁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q_04-balanced-substring"><span class="nav-text">Q_04-Balanced Substring</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NeNoOD" src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
+  <p class="site-author-name" itemprop="name">NeNoOD</p>
+  <div class="site-description" itemprop="description">To chronicle certain moments.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-fa fa-link"></i>
+      LINKS
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/video/BV1tM411Y7dh/?spm_id_from=333.337.search-card.all.click&amp;vd_source=2d22536b404cd2df687dbaa16152134a" title="https://www.bilibili.com/video/BV1tM411Y7dh/?spm_id_from=333.337.search-card.all.click&amp;vd_source=2d22536b404cd2df687dbaa16152134a" rel="noopener" target="_blank">不会还有人没听过</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yona-lia.cn/" title="https://yona-lia.cn" rel="noopener" target="_blank">yona-lia</a>
+        </li>
+    </ul>
+  </div>
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    
+    <div id="aplayer"></div>
+    
+    
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  © 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NeNoOD</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax="" async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    
+
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+    </div>
+
+
+<script src="/bundle.js"></script><script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+;
+
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+;
+
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://nenood.xyz/2024/01/31/2024-01-%E5%AF%92%E5%81%87%E7%AC%AC%E4%BA%8C%E5%91%A8/',]
+      });
+      });
+  ;
+
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script></body></html>
