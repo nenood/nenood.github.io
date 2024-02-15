@@ -29,7 +29,7 @@
 <meta property="og:description" content="做前缀和题单的时候遇到了二分，感觉挺奇妙的，记录一下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-15T11:13:02.000Z">
-<meta property="article:modified_time" content="2024-02-15T11:49:44.000Z">
+<meta property="article:modified_time" content="2024-02-15T12:15:10.000Z">
 <meta property="article:author" content="NeNoOD">
 <meta property="article:tag" content="二分">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-02-15 19:13:02 / 修改时间：19:49:44" itemprop="dateCreated datePublished" datetime="2024-02-15T19:13:02+08:00">2024-02-15</time>
+              <time title="创建时间：2024-02-15 19:13:02 / 修改时间：20:15:10" itemprop="dateCreated datePublished" datetime="2024-02-15T19:13:02+08:00">2024-02-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,24 +220,48 @@
         <p>做前缀和题单的时候遇到了二分，感觉挺奇妙的，记录一下</p>
 <span id="more"></span>
 <blockquote>
-<p>  题述：</p>
-<p>  给定  个物品，每个物品有其重量  和价值  ，给定  和  个区间</p>
-<p>  每段区间  内的物品检验值  计算公式为：</p>
-<p>  所有物品的总检验值为 </p>
-<p>  给定检验标准  ，求  为何值时  最小</p>
-<p>  输入：</p>
-<p>  第一行两个整数 ,  表示物品数量和区间个数</p>
-<p>  后面  行，每行两个整数  ，表示每个物品的重量和价值</p>
-<p>  后面  行，每行两个整数  ，表示区间</p>
-<p>  输出：</p>
-<p>   的最小值</p>
+<p>题述：</p>
+<p>给定 <span class="math display">\[n\]</span> 个物品，每个物品有其重量
+<span class="math display">\[w\]</span> 和价值 <span class="math display">\[v\]</span> ，给定 <span class="math display">\[W\]</span> 和 <span class="math display">\[m\]</span> 个区间</p>
+<p>每段区间 <span class="math display">\[[l_i, r_i]\]</span>
+内的物品检验值 <span class="math display">\[y_i\]</span>
+计算公式为：</p>
+<p><span class="math display">\[y_i = \sum\limits_{j=l_i}^{r_i}[w_j \ge
+W]\times\sum\limits_{j=l_i}^{r_i}[w_j \ge W]v_i\]</span></p>
+<p>所有物品的总检验值为 <span class="math display">\[Y = \sum\limits_{i
+= 1}^{m}y_i\]</span></p>
+<p>给定检验标准 <span class="math display">\[S\]</span> ，求 <span class="math display">\[W\]</span> 为何值时 <span class="math display">\[|Y-S|\]</span> 最小</p>
+<p>输入：</p>
+<p>第一行两个整数 <span class="math display">\[n\]</span>, <span class="math display">\[m\]</span> 表示物品数量和区间个数</p>
+<p>后面 <span class="math display">\[n\]</span> 行，每行两个整数 <span class="math display">\[w_i, v_i\]</span> ，表示每个物品的重量和价值</p>
+<p>后面 <span class="math display">\[m\]</span> 行，每行两个整数 <span class="math display">\[l_i, j_i\]</span> ，表示区间</p>
+<p>输出：</p>
+<p><span class="math display">\[|Y-S|\]</span> 的最小值</p>
 </blockquote>
 <p>本题主要两个关键点</p>
-<ol>
+<ol type="1">
 <li>前缀和</li>
 <li>二分答案</li>
 </ol>
-<h4 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h4><p>对于  ，两个部分均可用前缀和加速求解</p>
+<h4 id="前缀和">前缀和</h4>
+<p>对于 <span class="math display">\[y_i\]</span>
+，两个部分均可用前缀和加速求解</p>
+<p><span class="math display">\[sumn[i]\]</span> 表示前 <span class="math display">\[i\]</span> 个元素中 <span class="math display">\[w_i &gt; W\]</span> 的个数</p>
+<p><span class="math display">\[sumv[i]\]</span> 表示前 <span class="math display">\[i\]</span> 个元素中 <span class="math display">\[w_i &gt; W\]</span> 的价值总和</p>
+<p>由此来求区间个数和总和</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// wv 用于存放 w v，lr 用于存放 l r</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">getsum</span><span class="params">()</span> </span>{ 对于给定的 w 求前缀和</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (wv[i][<span class="number">0</span>] &gt;= w) { <span class="comment">// 若满足条件则增加，反之不变</span></span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>] + wv[i][<span class="number">1</span>];</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>];</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">gety</span><span class="params">()</span> </span>{ 利用前缀和求区间个数和总和</span><br><span class="line">    y = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++) {</span><br><span class="line">        a = sumn[lr[i][<span class="number">1</span>]] - sumn[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        b = sumv[lr[i][<span class="number">1</span>]] - sumv[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        y += (a * b);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="二分答案">二分答案</h4>
+<p>显然，<span class="math display">\[W\]</span>
+越大，包含符合条件的物品就越少，<span class="math display">\[Y\]</span>
+就越小</p>
+<p>所以当 <span class="math display">\[Y &gt; S\]</span> 时应该增大
+<span class="math display">\[W\]</span>，二分中即 <code>l = w</code></p>
+<p>反之应该减小 <span class="math display">\[W\]</span>，二分中即
+<code>r = w</code></p>
+<p>在二分的过程中直接找最小值，最后输出</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find</span><span class="params">()</span> </span>{</span><br><span class="line">    l = <span class="number">0</span>, r = maxw+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l + <span class="number">1</span> != r) {</span><br><span class="line">        w = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">getsum</span>(); <span class="comment">// 根据本轮二分得到的 w 计算前缀和</span></span><br><span class="line">        <span class="built_in">gety</span>(); <span class="comment">// 计算 Y</span></span><br><span class="line">        <span class="keyword">if</span> (y &gt; s) <span class="comment">// 移动端点</span></span><br><span class="line">            l = w;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r = w;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, <span class="built_in">llabs</span>(y - s));</span><br><span class="line">    }</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="最终代码">最终代码</h4>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 2000005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> loop(i, a, b) for (ll i = a; i &lt;= b; i++)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n, m, s, w, y, wv[MAXN][<span class="number">2</span>], lr[MAXN][<span class="number">2</span>], sumv[MAXN], sumn[MAXN], l, r, maxw, ans = <span class="number">9223372036854775807</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">getsum</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">loop</span>(i, <span class="number">1</span>, n) {</span><br><span class="line">        <span class="keyword">if</span> (wv[i][<span class="number">0</span>] &gt;= w) {</span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>] + wv[i][<span class="number">1</span>];</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>];</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">gety</span><span class="params">()</span> </span>{</span><br><span class="line">    y = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">loop</span>(i, <span class="number">1</span>, m) {</span><br><span class="line">        <span class="type">int</span> a = sumn[lr[i][<span class="number">1</span>]] - sumn[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> b = sumv[lr[i][<span class="number">1</span>]] - sumv[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        y += (a * b);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find</span><span class="params">()</span> </span>{</span><br><span class="line">    l = <span class="number">0</span>, r = maxw+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l + <span class="number">1</span> != r) {</span><br><span class="line">        w = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">getsum</span>();</span><br><span class="line">        <span class="built_in">gety</span>();</span><br><span class="line">        <span class="keyword">if</span> (y &gt; s)</span><br><span class="line">            l = w;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r = w;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, <span class="built_in">llabs</span>(y - s));</span><br><span class="line">    }</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    ios_base::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;</span><br><span class="line">    <span class="built_in">loop</span>(i, <span class="number">1</span>, n) {cin &gt;&gt; wv[i][<span class="number">0</span>] &gt;&gt; wv[i][<span class="number">1</span>]; maxw = <span class="built_in">max</span>(maxw, wv[i][<span class="number">0</span>]);}</span><br><span class="line">    <span class="built_in">loop</span>(i, <span class="number">1</span>, m) cin &gt;&gt; lr[i][<span class="number">0</span>] &gt;&gt; lr[i][<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">find</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
     </div>
 
@@ -299,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">前缀和</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">前缀和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88"><span class="nav-text">二分答案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E4%BB%A3%E7%A0%81"><span class="nav-text">最终代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -506,40 +530,7 @@
     </div>
 
 
-<script src="/bundle.js"></script><script>n;
-w;
-v;
-W;
-m;
-[l_i, r_i];
-y_i;
-y_i = \sum\limits_{j=l_i}^{r_i}[w_j \ge W]\times\sum\limits_{j=l_i}^{r_i}[w_j \ge W]v_i;
-Y = \sum\limits_{i = 1}^{m}y_i;
-S;
-W;
-|Y-S|;
-n;
-m;
-n;
-w_i, v_i;
-m;
-l_i, j_i;
-|Y-S|;
-y_i;
-sumn[i]$$ 表示前 $$i$$ 个元素中 $$w_i > W$$ 的个数
-
-$$sumv[i]$$ 表示前 $$i$$ 个元素中 $$w_i > W$$ 的价值总和
-
-由此来求区间个数和总和
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// wv 用于存放 w v，lr 用于存放 l r</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">getsum</span><span class="params">()</span> </span>&#123; 对于给定的 w 求前缀和</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (wv[i][<span class="number">0</span>] &gt;= w) &#123; <span class="comment">// 若满足条件则增加，反之不变</span></span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>] + wv[i][<span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sumn[i] = sumn[i<span class="number">-1</span>];</span><br><span class="line">            sumv[i] = sumv[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">gety</span><span class="params">()</span> </span>&#123; 利用前缀和求区间个数和总和</span><br><span class="line">    y = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        a = sumn[lr[i][<span class="number">1</span>]] - sumn[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        b = sumv[lr[i][<span class="number">1</span>]] - sumv[lr[i][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">        y += (a * b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-#### 二分答案
-
-显然，$$W$$ 越大，包含符合条件的物品就越少，$$Y$$ 就越小
-
-所以当 $$Y > S$$ 时应该增大 $$W$$，反之应该减小 $$W;
-
+<script src="/bundle.js"></script><script>
   window.addEventListener('tabs:register', () => {
     let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
