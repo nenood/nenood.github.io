@@ -1,239 +1,237 @@
 <!DOCTYPE html><html lang="zh-CN"><head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/favicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/favicon.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="To chronicle certain moments.">
+    <meta name="author" content="NeNoOD">
+    
+    <title>
+        
+            如何使Hexo支持Latex数学公式的渲染（NexT主题） |
+        
+        N.E.O.D
+    </title>
+    
 
 
-
-
-
-  
-  
-  
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nenood.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221441450.png">
+    
+    
+    
+    
+    
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"nenood.xyz","root":"/","language":"zh-CN"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#897FF0","title":"N.E.O.D","author":"NeNoOD","avatar":"https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221426005.png","logo":"https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221455425.png","favicon":"https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221441450.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"To chronicle certain moments.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"蒟蒻"},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":false,"preload":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2023,"word_count":true,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-
-  <meta name="description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
- 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客
- 
- 后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此
- 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错
- 因此决定写一些侧重于解决问题的博客，希望或多或少能">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何使Hexo支持Latex数学公式的渲染（NexT主题）">
-<meta property="og:url" content="https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
-<meta property="og:site_name" content="N.E.O.D">
-<meta property="og:description" content="刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染
- 网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客
- 
- 后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此
- 运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错
- 因此决定写一些侧重于解决问题的博客，希望或多或少能">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-20T13:18:30.000Z">
-<meta property="article:modified_time" content="2024-01-23T09:07:34.000Z">
-<meta property="article:author" content="NeNoOD">
-<meta property="article:tag" content="Hexo博客优化">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
+<meta name="generator" content="Hexo 6.3.0"><script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');loadCss('https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css');loadCss('https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css');loadCss('https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css');loadCss('https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css');</script><noscript><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css"></noscript></head>
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>如何使Hexo支持Latex数学公式的渲染（NexT主题） | N.E.O.D</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<script>function loadCss(l){var d=document,h=d.head,s=d.createElement('link');s.rel='stylesheet';s.href=l;!function e(f){if (d.body)return f();setTimeout(function(){e(f)})}(function(){h.appendChild(s);});}loadCss('/style.css');loadCss('//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css');loadCss('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css');</script><noscript><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"></noscript></head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta custom-logo">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">N.E.O.D</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <a>
-        <img class="custom-logo-image" src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/logo_3.png" alt="N.E.O.D">
-      </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
     
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+<main class="page-container border-box">
 
-          <div class="content post posts-expand">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
             
+<header class="header-wrapper">
 
-    
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221455425.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               N.E.O.D
+            </a>
+        </div>
 
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
-      <meta itemprop="name" content="NeNoOD">
-      <meta itemprop="description" content="To chronicle certain moments.">
-    </span>
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class="" href="/">首页</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="/archives">归档</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="/tags">标签</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="/categories">分类</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="/about">关于</a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N.E.O.D">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          如何使Hexo支持Latex数学公式的渲染（NexT主题）
-        </h1>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class="" href="/">首页</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+    <div class="window-mask"></div>
 
-              <time title="创建时间：2024-01-20 21:18:30" itemprop="dateCreated datePublished" datetime="2024-01-20T21:18:30+08:00">2024-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-23 17:07:34" itemprop="dateModified" datetime="2024-01-23T17:07:34+08:00">2024-01-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
+</header>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
-      </header>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        如何使Hexo支持Latex数学公式的渲染（NexT主题）
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/202402221426005.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">NeNoOD</span>
+                                
+                                    <span class="author-badge">蒟蒻</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-01-20 21:18:30</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Jan 23 2024 17:07:34 GMT+0800">2024-01-23 17:07:34</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Hexo/">Hexo</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/">Hexo博客优化</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>700 字</span>
+            </span>
+        
+        
+        
+    </div>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</div>
 
-      
-        <p>刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染</p>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染</p>
 <p>网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客</p>
 <hr>
 <p>后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此</p>
@@ -247,8 +245,8 @@ math有关的npm包</h4>
 <h4 id="步骤二安装pandoc过滤插件和渲染插件">步骤二：安装Pandoc、过滤插件和渲染插件</h4>
 <ol type="1">
 <li><p>安装Pandoc<br>
-<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">How to
-install Pandoc</a><br>
+<a class="link" target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/blob/main/INSTALL.md">How to
+install Pandoc<i class="fas fa-external-link-alt"></i></a><br>
 点击上方链接进入后根据引导文档安装即可<br>
 <strong>注</strong>：根据安装程序所说，安装完成后需要重启电脑（似乎是重启电脑），笔者当时并未尝试不重启电脑的情况</p></li>
 <li><p>安装过滤插件</p>
@@ -276,374 +274,300 @@ install Pandoc</a><br>
 <p><strong>可能的解决方案</strong>：在上文步骤三中添加代码至<strong>博客</strong>配置文件中，将<code>- +shortcut_reference_links</code>一行注释掉，即：</p>
 <figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configure pandoc to use all github markdown format extensions</span></span><br><span class="line"><span class="comment"># extensions as of 2018 is an undocumented feature of hexo-renderer-pandoc</span></span><br><span class="line"><span class="comment"># Adding all extensions for github so we don't have to change index.js of</span></span><br><span class="line"><span class="comment"># hexo-renderer-pandoc.</span></span><br><span class="line"><span class="attr">pandoc:</span></span><br><span class="line">  <span class="attr">extensions:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-implicit_figures</span> <span class="comment"># 防止在图片后面将方括号里的东西作为caption。</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+gfm_auto_identifiers+angle_brackets_escapable</span> <span class="comment"># Not available in pandoc 1.16</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+pipe_tables+raw_html+fenced_code_blocks</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-ascii_identifiers+backtick_code_blocks+autolink_bare_uris</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">+intraword_underscores+strikeout+hard_line_breaks+emoji</span></span><br><span class="line">    <span class="comment"># - +shortcut_reference_link</span></span><br></pre></td></tr></tbody></table></figure>
 
-    </div>
+                </div>
 
-    
-    
-    
+                
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> Hexo博客优化</a>
-          </div>
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/">Hexo博客优化</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev" rel="prev" href="/2024/01/23/2024-1-%E5%AF%92%E5%81%87%E7%AC%AC%E4%B8%80%E5%91%A8-1/" title="2024.1-寒假第一周-1">
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">2024.1-寒假第一周-1</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next" rel="next" href="/2024/01/20/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF%E9%A2%98-%E8%90%A5%E5%9C%B0%E4%BA%BA%E6%95%B0%EF%BC%88%E8%BD%AC%E8%87%AAPecco%EF%BC%89/" title="树状数组模板题-营地人数（转自Pecco）">
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">树状数组模板题-营地人数（转自Pecco）</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2024/01/20/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF%E9%A2%98-%E8%90%A5%E5%9C%B0%E4%BA%BA%E6%95%B0%EF%BC%88%E8%BD%AC%E8%87%AAPecco%EF%BC%89/" rel="prev" title="树状数组模板题-营地人数（转自Pecco）">
-      <i class="fa fa-chevron-left"></i> 树状数组模板题-营地人数（转自Pecco）
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/01/23/2024-1-%E5%AF%92%E5%81%87%E7%AC%AC%E4%B8%80%E5%91%A8-1/" rel="next" title="2024.1-寒假第一周-1">
-      2024.1-寒假第一周-1 <i class="fa fa-chevron-right"></i>
-    </a></div>
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%8D%B8%E8%BD%BD%E4%B8%8Ehexo-math%E6%9C%89%E5%85%B3%E7%9A%84npm%E5%8C%85"><span class="nav-text">步骤一：卸载与hexo
+math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%AE%89%E8%A3%85pandoc%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6%E5%92%8C%E6%B8%B2%E6%9F%93%E6%8F%92%E4%BB%B6"><span class="nav-text">步骤二：安装Pandoc、过滤插件和渲染插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">步骤三：配置mathjax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能会有的问题</span></a></li></ol>
     </div>
-      </footer>
-    
-  </article>
-  
-  
-  
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
-
-          </div>
-          
-
-
+                
+            </div>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                ©&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">NeNoOD</a>
+                
+            </div>
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&amp;&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%8D%B8%E8%BD%BD%E4%B8%8Ehexo-math%E6%9C%89%E5%85%B3%E7%9A%84npm%E5%8C%85"><span class="nav-text">步骤一：卸载与hexo
-math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%AE%89%E8%A3%85pandoc%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6%E5%92%8C%E6%B8%B2%E6%9F%93%E6%8F%92%E4%BB%B6"><span class="nav-text">步骤二：安装Pandoc、过滤插件和渲染插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">步骤三：配置mathjax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能会有的问题</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
+            
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="NeNoOD" src="https://cdn.jsdelivr.net/gh/nenood/pic_for_blogs@main/img/fvicon.png">
-  <p class="site-author-name" itemprop="name">NeNoOD</p>
-  <div class="site-description" itemprop="description">To chronicle certain moments.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">11</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
+            
+        
 
+        <div class="count-item info-item default">
+            
+                <span class="count-box border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">12.8k</span>
+                </span>
+            
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-fa fa-link"></i>
-      LINKS
+            
+
+            
+        </div>
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://www.bilibili.com/video/BV1tM411Y7dh/?spm_id_from=333.337.search-card.all.click&amp;vd_source=2d22536b404cd2df687dbaa16152134a" title="https://www.bilibili.com/video/BV1tM411Y7dh/?spm_id_from=333.337.search-card.all.click&amp;vd_source=2d22536b404cd2df687dbaa16152134a" rel="noopener" target="_blank">不会还有人没听过</a>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
         </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://yona-lia.cn/" title="https://yona-lia.cn" rel="noopener" target="_blank">yona-lia</a>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
-  </div>
-<!-- CloudCalendar -->
-<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
-	<div class="widget" id="CloudCalendar"></div>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
 </div>
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%8D%B8%E8%BD%BD%E4%B8%8Ehexo-math%E6%9C%89%E5%85%B3%E7%9A%84npm%E5%8C%85"><span class="nav-text">步骤一：卸载与hexo
+math有关的npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%AE%89%E8%A3%85pandoc%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6%E5%92%8C%E6%B8%B2%E6%9F%93%E6%8F%92%E4%BB%B6"><span class="nav-text">步骤二：安装Pandoc、过滤插件和渲染插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">步骤三：配置mathjax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">可能会有的问题</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
         </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
     
-    <div id="aplayer"></div>
-    
-    
+</main>
 
-    <footer class="footer">
-      <div class="footer-inner">
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+
+<!-- lazyload -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/lazyload.min.js"></script>
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
         
 
+        <!-- copyright-info -->
         
 
-<div class="copyright">
-  
-  © 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">NeNoOD</span>
-</div>
-
+        <!-- share -->
         
-<div class="busuanzi-count">
-  <script data-pjax="" async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
 </div>
 
+<!-- mermaid -->
 
 
+<!-- pjax -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
 
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
 
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  
-  
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div id="pjax">
-  
-
-  
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  
-<!-- calendar widget -->
-
-    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
-    
-
-<div class="moon-menu">
-  <div class="moon-menu-items">
-    
-    <div class="moon-menu-item" onclick="back2bottom()">
-      <i class="fa fa-chevron-down"></i>    </div>
-    
-    <div class="moon-menu-item" onclick="back2top()">
-      <i class="fa fa-chevron-up"></i>    </div>
-    
-  </div>
-  <div class="moon-menu-button" onclick="moonMenuClick()">
-    <svg class="moon-menu-svg">
-      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
-      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
-      <g class="moon-menu-points">
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
-        <circle class="moon-menu-point" r=".2rem"></circle>
-        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
-      </g>
-    </svg>
-    <div class="moon-menu-icon">
-    </div>
-    <div class="moon-menu-text">
-    </div>
-  </div>
-</div>
-
-    </div>
-
-
-<script src="/bundle.js"></script><script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
     });
-  }
-;
+</script>
 
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
-  ],
-  switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
-  },
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
-});
 
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
-    var code = element.text || element.textContent || element.innerHTML || '';
-    var parent = element.parentNode;
-    parent.removeChild(element);
-    var script = document.createElement('script');
-    if (element.id) {
-      script.id = element.id;
-    }
-    if (element.className) {
-      script.className = element.className;
-    }
-    if (element.type) {
-      script.type = element.type;
-    }
-    if (element.src) {
-      script.src = element.src;
-      // Force synchronous loading of peripheral JS.
-      script.async = false;
-    }
-    if (element.dataset.pjax !== undefined) {
-      script.dataset.pjax = '';
-    }
-    if (code !== '') {
-      script.appendChild(document.createTextNode(code));
-    }
-    parent.appendChild(script);
-  });
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
-;
 
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/',]
-      });
-      });
-  ;
 
-    $(function() {
-        $('#CloudCalendar').aCalendar('zh-CN',
-            $.extend(
-                '', {
-                    single:true,
-                    root:'/calendar/'
-                }
-            )
-        );
-    });
-    </script></body></html>
+
+
+</body></html>
