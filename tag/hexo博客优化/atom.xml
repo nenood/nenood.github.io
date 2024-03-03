@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://nenood.xyz</id>
+    <title>N.E.O.D • Posts by &#34;hexo博客优化&#34; tag</title>
+    <link href="https://nenood.xyz" />
+    <updated>2024-01-20T13:18:30.000Z</updated>
+    <category term="STL" />
+    <category term="前缀和与差分" />
+    <category term="二分" />
+    <category term="MISC" />
+    <category term="Hexo博客优化" />
+    <category term="新春" />
+    <category term="并查集" />
+    <category term="数据结构" />
+    <category term="梯度下降" />
+    <category term="模拟" />
+    <entry>
+        <id>https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/</id>
+        <title>如何使Hexo支持Latex数学公式的渲染（NexT主题）</title>
+        <link rel="alternate" href="https://nenood.xyz/2024/01/20/%E5%A6%82%E4%BD%95%E4%BD%BFHexo%E6%94%AF%E6%8C%81Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/"/>
+        <content type="html">&lt;p&gt;刚使用Hexo写博客，后来发现Hexo并不支持Latex数学公式的渲染&lt;/p&gt;
+&lt;p&gt;网上查阅一番之后进行一通折腾，踩了许多的坑，于是决定以此来写我的第一篇博客&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;后续应该也会写上关于Hexo博客搭建的简明教程之类的，因为之前以为博客搭建是个简单的事情，实际上手后才发现并不是如此&lt;/p&gt;
+&lt;p&gt;运气好可能顺着某个教程一路就能成功，但是运气不好的话，可能就会到处报错&lt;/p&gt;
+&lt;p&gt;因此决定写一些侧重于解决问题的博客，希望或多或少能帮到一些人。（因为我遇到的问题比较多，应该算是”经验满满“了）以下是正文&lt;/p&gt;
+&lt;hr&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;h4 id=&#34;步骤一：卸载与hexo-math有关的npm包&#34;&gt;&lt;a href=&#34;#步骤一：卸载与hexo-math有关的npm包&#34; class=&#34;headerlink&#34; title=&#34;步骤一：卸载与hexo math有关的npm包&#34;&gt;&lt;/a&gt;步骤一：卸载与hexo math有关的npm包&lt;/h4&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm un hexo-math --save&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;npm un hexo-renderer-markdown --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&#34;步骤二：安装Pandoc、过滤插件和渲染插件&#34;&gt;&lt;a href=&#34;#步骤二：安装Pandoc、过滤插件和渲染插件&#34; class=&#34;headerlink&#34; title=&#34;步骤二：安装Pandoc、过滤插件和渲染插件&#34;&gt;&lt;/a&gt;步骤二：安装Pandoc、过滤插件和渲染插件&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;安装Pandoc&lt;br&gt;&lt;a class=&#34;link&#34;   href=&#34;https://github.com/jgm/pandoc/blob/main/INSTALL.md&#34; &gt;How to install Pandoc&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;br&gt;点击上方链接进入后根据引导文档安装即可&lt;br&gt;&lt;strong&gt;注&lt;/strong&gt;：根据安装程序所说，安装完成后需要重启电脑（似乎是重启电脑），笔者当时并未尝试不重启电脑的情况&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装过滤插件&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm i hexo-filter-mathjax --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;安装渲染插件&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm i hexo-renderer-pandoc --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;步骤三：配置mathjax&#34;&gt;&lt;a href=&#34;#步骤三：配置mathjax&#34; class=&#34;headerlink&#34; title=&#34;步骤三：配置mathjax&#34;&gt;&lt;/a&gt;步骤三：配置mathjax&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;主题&lt;/strong&gt;配置文件（_config.yml）中：&lt;br&gt;&lt;code&gt;Ctrl f&lt;/code&gt;搜索”math“&lt;br&gt;&lt;code&gt;per_page:&lt;/code&gt;一项修改为&lt;code&gt;true&lt;/code&gt;&lt;br&gt;&lt;code&gt;mathjax&lt;/code&gt;中的&lt;code&gt;enable&lt;/code&gt;设置为&lt;code&gt;true&lt;/code&gt;&lt;br&gt;若&lt;code&gt;per_page&lt;/code&gt;设置为&lt;code&gt;false&lt;/code&gt;则每次生成新的.md文件后需要在开头的配置内容中添加&lt;code&gt;mathjax: true&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;&lt;code&gt;mathjax&lt;/code&gt;与下方的&lt;code&gt;katex&lt;/code&gt;只能有一个的&lt;code&gt;enable&lt;/code&gt;为&lt;code&gt;true&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;博客&lt;/strong&gt;配置文件中：&lt;br&gt;加入以下代码&lt;/p&gt;
+&lt;figure class=&#34;highlight yaml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Configure pandoc to use all github markdown format extensions&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# extensions as of 2018 is an undocumented feature of hexo-renderer-pandoc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Adding all extensions for github so we don&amp;#x27;t have to change index.js of&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# hexo-renderer-pandoc.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;attr&#34;&gt;pandoc:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;attr&#34;&gt;extensions:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;-implicit_figures&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;# 防止在图片后面将方括号里的东西作为caption。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+gfm_auto_identifiers+angle_brackets_escapable&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;# Not available in pandoc 1.16&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+pipe_tables+raw_html+fenced_code_blocks&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;-ascii_identifiers+backtick_code_blocks+autolink_bare_uris&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+intraword_underscores+strikeout+hard_line_breaks+emoji&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+shortcut_reference_links&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（本操作是因为默认的markdown语法与GitHub的markdown语法不太一样）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;至此，在无任何异常的情况下，Hexo就可以支持Latex数学公式的渲染了&lt;/p&gt;
+&lt;h4 id=&#34;可能会有的问题&#34;&gt;&lt;a href=&#34;#可能会有的问题&#34; class=&#34;headerlink&#34; title=&#34;可能会有的问题&#34;&gt;&lt;/a&gt;可能会有的问题&lt;/h4&gt;&lt;p&gt;笔者在操作完上面所有的步骤后，运行&lt;code&gt;hexo g&lt;/code&gt;会报错&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;pandoc exited with code 23: The extension shortcut_reference_link is not supported &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; markdown&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;可能的解决方案&lt;/strong&gt;：在上文步骤三中添加代码至&lt;strong&gt;博客&lt;/strong&gt;配置文件中，将&lt;code&gt;- +shortcut_reference_links&lt;/code&gt;一行注释掉，即：&lt;/p&gt;
+&lt;figure class=&#34;highlight yaml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Configure pandoc to use all github markdown format extensions&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# extensions as of 2018 is an undocumented feature of hexo-renderer-pandoc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Adding all extensions for github so we don&amp;#x27;t have to change index.js of&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# hexo-renderer-pandoc.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;attr&#34;&gt;pandoc:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;attr&#34;&gt;extensions:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;-implicit_figures&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;# 防止在图片后面将方括号里的东西作为caption。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+gfm_auto_identifiers+angle_brackets_escapable&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;# Not available in pandoc 1.16&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+pipe_tables+raw_html+fenced_code_blocks&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;-ascii_identifiers+backtick_code_blocks+autolink_bare_uris&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;bullet&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;+intraword_underscores+strikeout+hard_line_breaks+emoji&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;# - +shortcut_reference_link&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+        <category term="Hexo博客优化" />
+        <updated>2024-01-20T13:18:30.000Z</updated>
+    </entry>
+</feed>

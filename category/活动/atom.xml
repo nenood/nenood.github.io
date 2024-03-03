@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://nenood.xyz</id>
+    <title>N.E.O.D • Posts by &#34;活动&#34; category</title>
+    <link href="https://nenood.xyz" />
+    <updated>2024-02-09T16:00:00.000Z</updated>
+    <category term="STL" />
+    <category term="前缀和与差分" />
+    <category term="二分" />
+    <category term="MISC" />
+    <category term="Hexo博客优化" />
+    <category term="新春" />
+    <category term="并查集" />
+    <category term="数据结构" />
+    <category term="梯度下降" />
+    <category term="模拟" />
+    <entry>
+        <id>https://nenood.xyz/2024/02/10/%E6%96%B0%E6%98%A5%E5%BF%AB%E4%B9%90%EF%BC%81/</id>
+        <title>新春快乐！</title>
+        <link rel="alternate" href="https://nenood.xyz/2024/02/10/%E6%96%B0%E6%98%A5%E5%BF%AB%E4%B9%90%EF%BC%81/"/>
+        <content type="html">&lt;p&gt;\ ( &amp;gt;__&amp;lt; ) / &lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;新春快乐！&lt;/p&gt;
+</content>
+        <category term="新春" />
+        <updated>2024-02-09T16:00:00.000Z</updated>
+    </entry>
+</feed>

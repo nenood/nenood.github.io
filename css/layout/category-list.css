@@ -3,7 +3,9 @@
   padding-bottom: 1.2rem;
 }
 .category-list-container .category-list-content ul.site-all-category-list {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .category-list-container .category-list-content ul.site-all-category-list > li.site-all-category-list-item {
   position: relative;
